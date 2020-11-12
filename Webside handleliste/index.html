@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <title>Handleliste</title>
+        <link rel="stylesheet" type="text/css" href="handleliste.css"/>
+    </head>
+    
+    <body>
+        
+        <div id="overskrift" class="header">
+            <h1>Handleliste</h1>
+            <input type="text" id="input" placeholder="varer...">
+            <span onclick="submit()" class="submitBtn">Legg til</span>
+        </div>
+        
+        <ul id="liste"></ul>
+        
+        
+    
+    
+    </body>
+    
+    
+    <script>
+    
+    var minHandleliste = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < minHandleliste.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        minHandleliste[i].appendChild(span);
+    }
+        
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function(ev){
+        if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+            }
+        }, false);
+        
+    function submit(){
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("input").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("Du må skrive noe!");
+        } else {
+            document.getElementById("liste").appendChild(li);
+        }
+        document.getElementById("input").value = "";
+        
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+        
+    for (li = 0; i < close.length; i++) {
+        close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.display = "none";
+            }
+        }
+    }
+    
+    
+    </script>
+    
